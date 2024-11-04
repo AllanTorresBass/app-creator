@@ -1,5 +1,19 @@
 import Image from "next/image";
+import { sql } from "@vercel/postgres";
 
+async function Cart(): Promise<JSX.Element> {
+  const { rows } = await sql`SELECT * from customers `;
+
+  return (
+    <div>
+      {rows.map((row) => (
+        <div key={row.id}>
+          {row.name} - {row.email}
+        </div>
+      ))}
+    </div>
+  );
+}
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -13,6 +27,7 @@ export default function Home() {
           priority
         />
         <h1>Begin...</h1>
+        <Cart />
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
