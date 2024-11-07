@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import bcrypt from "bcrypt";
+
 import { db } from "@vercel/postgres";
+import bcrypt from "bcrypt";
 
 const client = await db.connect();
 
